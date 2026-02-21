@@ -14,7 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -36,7 +38,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger(); // This generates the /swagger/v1/swagger.json file
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
@@ -46,8 +49,7 @@ app.UseAuthorization();
 // --- Fleet Management Endpoints ---
 
 var fleetGroup = app.MapGroup("/api/fleet").RequireAuthorization(policy => policy.RequireRole("Admin"))
-    .WithTags("Fleet Management")
-    .WithOpenApi();
+    .WithTags("Fleet Management");
 
 // GET: All vehicles
 fleetGroup.MapGet("/", async (IVehicleService vehicleService) =>
