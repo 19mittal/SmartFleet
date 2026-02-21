@@ -1,0 +1,99 @@
+using Microsoft.AspNetCore.Mvc;
+using SmartFleet.Fleet.Application.DTOs;
+using SmartFleet.Fleet.Application.Interfaces;
+using SmartFleet.Fleet.Domain.Enums;
+using SmartFleet.Fleet.Infrastructure;
+using SmartFleet.Fleet.Application;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add Infrastructure & Application layers (Assuming these extension methods exist)
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
+
+builder.Services.AddOpenApi();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
+builder.Services.AddAuthorization(); // Ensure Auth is registered
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+
+// --- Fleet Management Endpoints ---
+
+var fleetGroup = app.MapGroup("/api/fleet").RequireAuthorization(policy => policy.RequireRole("Admin"))
+    .WithTags("Fleet Management")
+    .WithOpenApi();
+
+// GET: All vehicles
+fleetGroup.MapGet("/", async (IVehicleService vehicleService) =>
+{
+    var vehicles = await vehicleService.GetAllVehiclesAsync();
+    return Results.Ok(vehicles);
+})
+.WithName("GetAllVehicles");
+
+// GET: Single vehicle by ID
+fleetGroup.MapGet("/{id:guid}", async (Guid id, IVehicleService vehicleService) =>
+{
+    var vehicle = await vehicleService.GetVehicleByIdAsync(id);
+    return vehicle is not null ? Results.Ok(vehicle) : Results.NotFound();
+})
+.WithName("GetVehicleById");
+
+// POST: Register a new vehicle
+fleetGroup.MapPost("/", async ([FromBody] CreateVehicleRequest request, IVehicleService vehicleService) =>
+{
+    try
+    {
+        var vehicle = await vehicleService.AddVehicleAsync(request);
+        return Results.CreatedAtRoute("GetVehicleById", new { id = vehicle.Id }, vehicle);
+    }
+    catch (InvalidOperationException ex)
+    {
+        return Results.Conflict(new { message = ex.Message });
+    }
+})
+.WithName("AddVehicle");
+
+// PATCH: Update vehicle status (e.g., set to Maintenance)
+fleetGroup.MapPatch("/{id:guid}/status", async (Guid id, [FromBody] VehicleStatus status, IVehicleService vehicleService) =>
+{
+    var success = await vehicleService.UpdateVehicleStatusAsync(id, status);
+    return success ? Results.NoContent() : Results.NotFound();
+})
+.WithName("UpdateVehicleStatus");
+
+// GET: Maintenance Alerts (AI readiness)
+fleetGroup.MapGet("/alerts", async (IVehicleService vehicleService) =>
+{
+    var alerts = await vehicleService.GetMaintenanceAlertsAsync();
+    return Results.Ok(alerts);
+})
+.WithName("GetMaintenanceAlerts");
+
+app.Run();

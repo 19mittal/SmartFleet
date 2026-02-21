@@ -1,0 +1,99 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fleet", "Fleet", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{41FCA422-7F78-41B9-BEAF-2B1D1EF46814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Fleet.Domain", "Fleet\SmartFleet.Fleet.Domain\SmartFleet.Fleet.Domain.csproj", "{EE03A610-3666-4C03-A962-17AD9FF2481F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Fleet.Application", "Fleet\SmartFleet.Fleet.Application\SmartFleet.Fleet.Application.csproj", "{DFB2BBE0-91AF-41D0-B44A-BA6C174718C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Fleet.Infrastructure", "Fleet\SmartFleet.Fleet.Infrastructure\SmartFleet.Fleet.Infrastructure.csproj", "{09E5A73A-56D9-44C6-A6CD-B997BDDDB5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Fleet.Api", "Fleet\SmartFleet.Fleet.Api\SmartFleet.Fleet.Api.csproj", "{69FD4098-3D46-4FC4-8565-5DF36EF37BA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Shared", "Shared\SmartFleet.Shared.Contracts\SmartFleet.Shared.csproj", "{338FA94F-D148-46BF-AF22-90747539F603}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIGateway", "APIGateway", "{83CA4FC9-920F-4D5D-9E05-3394344C3318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetGateway", "APIGateway\FleetGateway\FleetGateway.csproj", "{9AAB488D-15FA-445C-B74E-5297541BCE25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{9D6516FB-2A27-4D80-A601-B6AF6DAB4411}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Auth.Api", "Auth\Auth.Api\SmartFleet.Auth.Api.csproj", "{945F0DE9-354B-40C4-9B75-CDC620A7B5E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Auth.Application", "Auth\SmartFleet.Auth.Application\SmartFleet.Auth.Application.csproj", "{9F284CC5-ACDE-4054-9768-48254E6B91F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Auth.Domain", "Auth\SmartFleet.Auth.Domain\SmartFleet.Auth.Domain.csproj", "{446941AF-0A94-47E0-BF81-EAC52A1209C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFleet.Auth.Infrastructure", "Auth\SmartFleet.Auth.Infrastructure\SmartFleet.Auth.Infrastructure.csproj", "{E8EB57DD-6803-462A-8E6C-4C603BAFD04F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE03A610-3666-4C03-A962-17AD9FF2481F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE03A610-3666-4C03-A962-17AD9FF2481F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE03A610-3666-4C03-A962-17AD9FF2481F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE03A610-3666-4C03-A962-17AD9FF2481F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB2BBE0-91AF-41D0-B44A-BA6C174718C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB2BBE0-91AF-41D0-B44A-BA6C174718C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB2BBE0-91AF-41D0-B44A-BA6C174718C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB2BBE0-91AF-41D0-B44A-BA6C174718C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09E5A73A-56D9-44C6-A6CD-B997BDDDB5A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09E5A73A-56D9-44C6-A6CD-B997BDDDB5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09E5A73A-56D9-44C6-A6CD-B997BDDDB5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09E5A73A-56D9-44C6-A6CD-B997BDDDB5A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69FD4098-3D46-4FC4-8565-5DF36EF37BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69FD4098-3D46-4FC4-8565-5DF36EF37BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69FD4098-3D46-4FC4-8565-5DF36EF37BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69FD4098-3D46-4FC4-8565-5DF36EF37BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{338FA94F-D148-46BF-AF22-90747539F603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{338FA94F-D148-46BF-AF22-90747539F603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{338FA94F-D148-46BF-AF22-90747539F603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{338FA94F-D148-46BF-AF22-90747539F603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AAB488D-15FA-445C-B74E-5297541BCE25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AAB488D-15FA-445C-B74E-5297541BCE25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AAB488D-15FA-445C-B74E-5297541BCE25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AAB488D-15FA-445C-B74E-5297541BCE25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{945F0DE9-354B-40C4-9B75-CDC620A7B5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{945F0DE9-354B-40C4-9B75-CDC620A7B5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{945F0DE9-354B-40C4-9B75-CDC620A7B5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{945F0DE9-354B-40C4-9B75-CDC620A7B5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F284CC5-ACDE-4054-9768-48254E6B91F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F284CC5-ACDE-4054-9768-48254E6B91F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F284CC5-ACDE-4054-9768-48254E6B91F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F284CC5-ACDE-4054-9768-48254E6B91F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446941AF-0A94-47E0-BF81-EAC52A1209C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446941AF-0A94-47E0-BF81-EAC52A1209C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446941AF-0A94-47E0-BF81-EAC52A1209C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446941AF-0A94-47E0-BF81-EAC52A1209C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8EB57DD-6803-462A-8E6C-4C603BAFD04F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8EB57DD-6803-462A-8E6C-4C603BAFD04F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8EB57DD-6803-462A-8E6C-4C603BAFD04F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8EB57DD-6803-462A-8E6C-4C603BAFD04F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE03A610-3666-4C03-A962-17AD9FF2481F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DFB2BBE0-91AF-41D0-B44A-BA6C174718C2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{09E5A73A-56D9-44C6-A6CD-B997BDDDB5A1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{69FD4098-3D46-4FC4-8565-5DF36EF37BA3} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{338FA94F-D148-46BF-AF22-90747539F603} = {41FCA422-7F78-41B9-BEAF-2B1D1EF46814}
+		{9AAB488D-15FA-445C-B74E-5297541BCE25} = {83CA4FC9-920F-4D5D-9E05-3394344C3318}
+		{945F0DE9-354B-40C4-9B75-CDC620A7B5E0} = {9D6516FB-2A27-4D80-A601-B6AF6DAB4411}
+		{9F284CC5-ACDE-4054-9768-48254E6B91F3} = {9D6516FB-2A27-4D80-A601-B6AF6DAB4411}
+		{446941AF-0A94-47E0-BF81-EAC52A1209C3} = {9D6516FB-2A27-4D80-A601-B6AF6DAB4411}
+		{E8EB57DD-6803-462A-8E6C-4C603BAFD04F} = {9D6516FB-2A27-4D80-A601-B6AF6DAB4411}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23E45445-418E-4168-AFD5-C9A0227D2E35}
+	EndGlobalSection
+EndGlobal
