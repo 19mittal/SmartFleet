@@ -31,6 +31,7 @@ var proxyConfig = builder.Configuration.GetSection("ReverseProxy");
 builder.Services.AddServiceDiscovery();
 builder.Services.AddReverseProxy()
     .LoadFromConfig(proxyConfig)
+    .AddServiceDiscoveryDestinationResolver()
     .AddSwagger(proxyConfig);           // ← single line wires all Swagger config
 
 

@@ -25,19 +25,22 @@ namespace SmartFleet.Auth.Infrastructure.Security
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim("jti", Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                 new Claim("fullname", user.FullName)
             };
 
             // Add roles here later if needed
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expiry = DateTime.UtcNow.AddMinutes(
+                double.Parse(_config["Jwt:AccessTokenMinutes"] ?? "15"));
 
             var token = new JwtSecurityToken(
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(double.Parse(_config["Jwt:DurationInMinutes"]!)),
+                expires: expiry,
                 signingCredentials: creds
             );
 

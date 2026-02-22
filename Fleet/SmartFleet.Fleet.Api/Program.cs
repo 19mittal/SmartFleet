@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
+using SmartFleet.Fleet.Application;
 using SmartFleet.Fleet.Application.DTOs;
 using SmartFleet.Fleet.Application.Interfaces;
 using SmartFleet.Fleet.Domain.Enums;
 using SmartFleet.Fleet.Infrastructure;
-using SmartFleet.Fleet.Application;
 using SmartFleet.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,51 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Document info
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "SmartFleet API",
+        Version = "v1",
+        Description = "JWT Authentication",
+
+    });
+
+    // Define Bearer security scheme
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description =
+            "Enter your JWT access token.\n\nExample: `eyJhbGci...`"
+    });
+
+    // Apply Bearer to every endpoint globally
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id   = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+
+    // Include XML comments from controller doc comments
+    var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+        options.IncludeXmlComments(xmlPath);
+});
 
 
 builder.Services.AddAuthorization(); // Ensure Auth is registered
