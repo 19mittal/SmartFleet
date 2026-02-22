@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Auth\Auth.Api\SmartFleet.Auth.Api.csproj" />
     <ProjectReference Include="..\..\Fleet\SmartFleet.Fleet.Api\SmartFleet.Fleet.Api.csproj" />
     <ProjectReference Include="..\FleetGateway\FleetGateway.csproj" />
+    <ProjectReference Include="..\SmartFleet.Aspire.ServiceDefaults\SmartFleet.Aspire.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>
