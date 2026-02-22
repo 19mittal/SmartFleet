@@ -1,14 +1,16 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SmartFleet.Fleet.Application.DTOs;
 using SmartFleet.Fleet.Application.Interfaces;
 using SmartFleet.Fleet.Domain.Enums;
 using SmartFleet.Fleet.Infrastructure;
 using SmartFleet.Fleet.Application;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using SmartFleet.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
+
+// ──Fleet Auth (JWT + Policies) ─────────────────────────────
+builder.Services.AddFleetJwtAuthentication(builder.Configuration);
 
 // Add Infrastructure & Application layers (Assuming these extension methods exist)
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -17,21 +19,7 @@ builder.Services.AddApplication();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
-        };
-    });
+
 builder.Services.AddAuthorization(); // Ensure Auth is registered
 
 var app = builder.Build();

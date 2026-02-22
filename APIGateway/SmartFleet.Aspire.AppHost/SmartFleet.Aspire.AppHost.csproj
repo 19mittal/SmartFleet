@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>42cef42c-0ee4-49d8-bf5b-2fcacd40a84b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Auth\Auth.Api\SmartFleet.Auth.Api.csproj" />
+    <ProjectReference Include="..\..\Fleet\SmartFleet.Fleet.Api\SmartFleet.Fleet.Api.csproj" />
+    <ProjectReference Include="..\FleetGateway\FleetGateway.csproj" />
+  </ItemGroup>
+
+</Project>
