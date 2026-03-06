@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\SmartFleet.Shared.Contracts\SmartFleet.Shared.csproj" />
-    <ProjectReference Include="..\SmartFleet.Aspire.ServiceDefaults\SmartFleet.Aspire.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

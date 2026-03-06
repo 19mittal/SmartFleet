@@ -9,7 +9,7 @@ using Yarp.ReverseProxy.Swagger.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // ── Aspire ─────────────────────────────────────────────────────────────────
-builder.AddServiceDefaults();
+builder.AddAspireServiceDefaults();
 // ── Auth (JWT + Role Policies) ─────────────────────────────
 builder.Services.AddFleetJwtAuthentication(builder.Configuration);
 // ── Rate Limiting ──────────────────────────────────────────────────────────

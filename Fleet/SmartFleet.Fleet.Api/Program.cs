@@ -8,7 +8,7 @@ using SmartFleet.Fleet.Infrastructure;
 using SmartFleet.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
+builder.AddAspireServiceDefaults();
 
 // ──Fleet Auth (JWT + Policies) ─────────────────────────────
 builder.Services.AddFleetJwtAuthentication(builder.Configuration);

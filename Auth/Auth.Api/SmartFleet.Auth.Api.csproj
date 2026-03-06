@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\APIGateway\SmartFleet.Aspire.ServiceDefaults\SmartFleet.Aspire.ServiceDefaults.csproj" />
     <ProjectReference Include="..\..\Shared\SmartFleet.Shared.Contracts\SmartFleet.Shared.csproj" />
     <ProjectReference Include="..\SmartFleet.Auth.Infrastructure\SmartFleet.Auth.Infrastructure.csproj" />
   </ItemGroup>

@@ -2,9 +2,10 @@ using Application;
 using SmartFleet.Auth.Application;
 using SmartFleet.Auth.Application.DTOs;
 using SmartFleet.Auth.Application.Interfaces;
+using SmartFleet.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
+builder.AddAspireServiceDefaults();
 // 1. Register our Layered Architecture Services
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
